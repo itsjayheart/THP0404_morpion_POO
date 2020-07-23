@@ -1,14 +1,13 @@
 class Game
 
-  attr_accessor :current_game, :current_board, :player_one, :player_two, :display
+  attr_accessor :current_board, :player_one, :player_two, :display
 
-  def initialize(my_game)
+  def initialize
     @current_board = Board.new
     ask_name
-    @current_game = my_game
-    @display = Show.new(@current_game)
+    @display = Show.new(self)
 
-    @display.throw
+    @display.throw(self)
     while is_it_still_going?
       game_turn(@player_one)
       game_turn(@player_two)
@@ -37,7 +36,7 @@ class Game
 
   #
   def game_turn(which_player)
-    @display.throw
+    @display.throw(self)
     puts "#{which_player.name} what do you want to do?"
     enter_input(which_player)
 

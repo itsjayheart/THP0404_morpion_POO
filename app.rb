@@ -10,7 +10,5 @@ require 'board'
 require 'player'
 require 'show'
 
-my_game = Game.new(my_game)
+my_game = Game.new
 
-
-binding.pry

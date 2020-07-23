@@ -3,11 +3,11 @@ class Show
   attr_accessor :tile_array
 
   def initialize(my_game)
-    @tile_array = my_game.current_board.boardcase_array
+   @tile_array = my_game.current_board.boardcase_array
   end
 
 
-  def throw
+  def throw(my_game)
     board_display_array = []
 
     tile_array.each do |boardcase|

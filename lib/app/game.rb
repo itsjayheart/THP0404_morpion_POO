@@ -125,11 +125,21 @@ C1 [6] | C2 [7] | C3 [8]
 =end
 
   def end_of_the_game
+    puts ''
+    puts "Bienvenue sur TIC-TAC-TOE"
+    puts "Veuillez écrire vos noms :"
+
+    puts "Joueur 1 : "
+    puts "> #{@player_one.name}"
+    puts "Joueur 2 : "
+    puts "> #{@player_two.name}"
+    puts ''
     @display.throw(self)
+    puts ''
     puts "THIS IS THE END OF THE GAME"
     puts ''
     if @current_board.boardcase_array.any? { |boardcase| boardcase.status == nil } == false
-      puts 'I am afraid this a DRAW T_T'
+      puts 'I am afraid this is a DRAW T_T'
     else
       puts "Wow! #{@player_turn.name} you did win this one"
       @player_turn == @player_one ? (@score_player_one += 1) : (@score_player_two += 1)

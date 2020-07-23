@@ -9,6 +9,6 @@ require 'boardcase'
 require 'board'
 require 'player'
 require 'show'
+require 'application'
 
-my_game = Game.new
-
+Application.new

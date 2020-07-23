@@ -1,23 +1,31 @@
 class Game
-
+  system("clear")
   attr_accessor :current_board, :player_one, :player_two, :display
 
   def initialize
+    @score_player_one = 0
+    @score_player_two = 0
+
     @current_board = Board.new
     ask_name
+    system("clear")
     @display = Show.new(self)
 
     while is_it_still_going?
       game_turn(@player_one)
+      @player_turn = @player_one
+      break unless is_it_still_going?
       game_turn(@player_two)
+      break unless is_it_still_going?
+      @player_turn = @player_two
     end
-
     end_of_the_game
   end
 
   #demande le nom des deux players
   def ask_name
 
+    puts ''
     puts "Bienvenue sur TIC-TAC-TOE"
     puts "Veuillez écrire vos noms :"
 
@@ -35,9 +43,20 @@ class Game
 
   #
   def game_turn(which_player)
+    puts ''
+    puts "Bienvenue sur TIC-TAC-TOE"
+    puts "Veuillez écrire vos noms :"
+
+    puts "Joueur 1 : "
+    puts "> #{@player_one.name}"
+    puts "Joueur 2 : "
+    puts "> #{@player_two.name}"
+    puts ''
     @display.throw(self)
+    puts ''
     puts "#{which_player.name} what do you want to do?"
     enter_input(which_player)
+    system("clear")
   end
 
   def enter_input(which_player)
@@ -55,7 +74,7 @@ class Game
   end
 
   def is_it_still_going?
-    arr = current_board.boardcase_array
+    arr = @current_board.boardcase_array
     #player 1
     if arr[0].status == 'player_one' && arr[1].status == 'player_one' && arr[2].status == 'player_one'
       return false
@@ -68,7 +87,7 @@ class Game
     elsif arr[1].status == 'player_one' && arr[4].status == 'player_one' && arr[7].status == 'player_one'
       return false
     elsif arr[2].status == 'player_one' && arr[5].status == 'player_one' && arr[8].status == 'player_one'
-      return alfse
+      return false
     elsif arr[0].status == 'player_one' && arr[4].status == 'player_one' && arr[8].status == 'player_one'
       return false
     elsif arr[2].status == 'player_one' && arr[4].status == 'player_one' && arr[6].status == 'player_one'
@@ -106,7 +125,22 @@ C1 [6] | C2 [7] | C3 [8]
 =end
 
   def end_of_the_game
-      puts 'end of the game'
+    @display.throw(self)
+    puts "THIS IS THE END OF THE GAME"
+    puts ''
+    if @current_board.boardcase_array.any? { |boardcase| boardcase.status == nil } == false
+      puts 'I am afraid this a DRAW T_T'
+    else
+      puts "Wow! #{@player_turn.name} you did win this one"
+      @player_turn == @player_one ? (@score_player_one += 1) : (@score_player_two += 1)
+    end
+    puts "#{@player_one.name} :#{@score_player_one} victories"
+    puts "#{@player_two.name} :#{@score_player_two} victories"
+    puts ''
+    puts ''
+    print "DO YOU WANT TO TRY AGAIN? Y/n"
+    choice = gets.chomp
+      exit unless choice == "Y"
   end
 
 end

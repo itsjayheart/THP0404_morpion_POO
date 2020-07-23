@@ -20,9 +20,9 @@ class Show
       end
     end
 
-
-    puts "\|#{board_display_array[0]}\|#{board_display_array[1]}\|#{board_display_array[2]}\|"
-    puts "\|#{board_display_array[3]}\|#{board_display_array[4]}\|#{board_display_array[5]}\|"
-    puts "\|#{board_display_array[6]}\|#{board_display_array[7]}\|#{board_display_array[8]}\|"
+    puts " \|1\|2\|3\|"
+    puts "A\|#{board_display_array[0]}\|#{board_display_array[1]}\|#{board_display_array[2]}\|"
+    puts "B\|#{board_display_array[3]}\|#{board_display_array[4]}\|#{board_display_array[5]}\|"
+    puts "C\|#{board_display_array[6]}\|#{board_display_array[7]}\|#{board_display_array[8]}\|"
   end
 end

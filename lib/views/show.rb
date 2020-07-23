@@ -11,12 +11,12 @@ class Show
     board_display_array = []
 
     tile_array.each do |boardcase|
-      if boardcase.status = "player_one"
+      if boardcase.status == "player_one"
         board_display_array << "O"
-      elsif boardcase.status = "player_two"
-        boardcase << "X"
+      elsif boardcase.status == "player_two"
+        board_display_array  << "X"
       else
-        @board_display_array << " "
+        board_display_array  << " "
       end
     end
 

@@ -7,7 +7,6 @@ class Game
     ask_name
     @display = Show.new(self)
 
-    @display.throw(self)
     while is_it_still_going?
       game_turn(@player_one)
       game_turn(@player_two)
@@ -39,19 +38,20 @@ class Game
     @display.throw(self)
     puts "#{which_player.name} what do you want to do?"
     enter_input(which_player)
-
   end
 
   def enter_input(which_player)
-    @gamer_choice = gets.chomp
+    player_choice = gets.chomp
+    if @current_board.boardcase_array.any? {|boardcase| boardcase.coords == player_choice && boardcase.status == nil}
       @current_board.boardcase_array.each do |boardcase|
-        if boardcase.coords == @gamer_choice && boardcase.is_empty? == true
+        if boardcase.coords == player_choice
           which_player.name == @player_one.name ? boardcase.status = 'player_one' : boardcase.status = 'player_two'
-        elsif boardcase.coords == @gamer_choice && boardcase.is_empty? == false
-          puts 'you need to enter a valid coord'
-          enter_input(which_player)
         end
       end
+    else
+      puts "ERROR"
+      enter_input(which_player)
+    end
   end
 
   def is_it_still_going?

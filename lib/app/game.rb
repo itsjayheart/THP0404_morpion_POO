@@ -6,9 +6,9 @@ class Game
     @current_board = Board.new
     ask_name
     @current_game = my_game
+    @display = Show.new(@current_game)
 
-    @display = Show.new
-
+    @display.throw
     while is_it_still_going?
       game_turn(@player_one)
       game_turn(@player_two)
